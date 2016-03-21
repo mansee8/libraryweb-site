@@ -7,7 +7,7 @@ Feature: Book search
   Scenario: 
     Given I go to "https://www.library.ucla.edu/user"
 	When I fill in "edit-name" with "test_ce_basic"
-	And I fill in "edit-pass" with "test_ce_basic"
+	And I fill in "edit-pass" with ""
 	And I press "Log in"
 	Then I should see "Skip to main content"
 	
