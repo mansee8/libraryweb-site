@@ -29,6 +29,31 @@ class FeatureContext extends MinkContext
     {
         // Initialize your context here
     }
+	 /**
+  * @Given /^wait (\d+) second$/
+  */
+ public function waitSecond($arg1)
+ {
+	$this->getSession()->wait(1000*$arg1);
+     //throw new PendingException();
+ }
+
+ 
+
+	
+	 /**
+  * @Given /^I click the "([^"]*)" button$/
+  */
+ public function iClickTheButton($arg1)
+ {
+    $findName = $this->getSession()->getPage()->find("css", $arg1);
+        if (!$findName) {
+            throw new Exception($arg1 . " could not be found");
+        } else {
+            $findName->click();
+        }
+ }
+
 	
 	/**
  * @When /^I select the "([^"]*)" radio button$/
