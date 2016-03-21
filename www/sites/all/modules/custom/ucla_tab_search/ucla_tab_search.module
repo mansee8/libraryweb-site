@@ -68,10 +68,14 @@ function ucla_tab_search_tabs_form($form, &$form_state) {
   $form['books'] = array(
     '#title' => t('Books & More'),
   ) + $fieldset_default;
+  $books_placeholder_label = 'Find books, journals and more.';
   $form['books']['text_query'] = $query_textfield;
   $form['books']['text_query']['#attributes'] = array(
-    'placeholder' => t('Find books, journals and more.'),
+    'placeholder' => t($books_placeholder_label),
   );
+  $form['books']['text_query']['#title'] = t($books_placeholder_label);
+  $form['books']['text_query']['#title_display'] = 'invisible';
+
 
   $form['books']['ucla_catalog_search_index'] = array(
     '#type' => 'select',
@@ -95,6 +99,8 @@ function ucla_tab_search_tabs_form($form, &$form_state) {
     '#states' => array(
       'visible' => array(':input[name="books[catalog]"]' => array('value' => 'BM-CAT')),
     ),
+    '#title' => t('Select search field'),
+    '#title_display' => 'invisible',
   );
 
   $form['books']['catalog'] = array(
@@ -149,75 +155,52 @@ can be changed via a pulldown search limit on the results screen. Many records c
   );
 
   ////////////////////////////////////////////////////////////////////////////////
-  // Articles tab.
-  // Articles tab.
-  // Articles tab.
-  $form['articles'] = array(
-    '#title' => t('Articles'),
+  // ArticlesPlus tab.
+  // ArticlesPlus tab.
+  // ArticlesPlus tab.
+  $form['articlesplus'] = array(
+    '#title' => t('ArticlesPlus'),
   ) + $fieldset_default;
-  $form['articles']['text_query'] = $query_textfield;
-  $form['articles']['text_query']['#attributes'] = array(
-    'placeholder' => t('Quick article search. Search several databases at once.'),
+  $articlesplus_placeholder_label = 'Search several databases at once.';
+  $form['articlesplus']['text_query'] = $query_textfield;
+  $form['articlesplus']['text_query']['#attributes'] = array(
+    'placeholder' => t($articlesplus_placeholder_label),
+  );
+  $form['articlesplus']['text_query']['#title'] = t($articlesplus_placeholder_label);
+  $form['articlesplus']['text_query']['#title_display'] = 'invisible';
+
+  $form['articlesplus']['peer_review'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Limit to peer-reviewed'),
   );
 
-  $defaults['search_type'][] = 'keyword';
-  $form['articles']['search_index'] = array(
-    '#type' => 'select',
-    '#default_value' => $defaults['search_type'],
-    '#options' => array(
-        'title' => t('Title'),
-        'author' => t('Author'),
-        'fulltext' => t('Full text'),
-        'keyword' => t('Keyword'),
-        'subject' => t('Subject'),
-        'abstract' => t('Abstract'),
-        'isbn' => t('ISBN'),
-        'issn' => t('ISSN'),
+  $form['articlesplus']['articlesplus_search'] = $search_button;
+  $form['articlesplus']['articlesplus_search']['#name'] = 'op_articlesplus';
+
+  $form['articlesplus']['articlesplus_container_mel'] = array(
+    '#type' => 'container',
+    '#states' => array(
+      'visible' => array(':input[name="articleplus[catalog]"]' => array('value' => 'articleplus-Mel')),
     ),
-  );
-  $form['articles']['search_year'] = array(
-    '#type' => 'textfield',
     '#attributes' => array(
-        'placeholder' => t('Year (yyyy)'),
-    ),
-  );
-  $defaults['category'][] = '103266';
-  $form['articles']['search_categories'] = array(
-    '#type' => 'checkboxes',
-    '#default_value' => $defaults['category'],
-    '#options' => array(
-      '103267' => t('<a href="search/articles/arts-humanities">Arts and Humanities</a>'),
-      '103349' => t('<a href="search/articles/business-economics">Business and Economics</a>'),
-      '103269' => t('<a href="search/articles/engineering-applied-sciences">Engineering and Applied Sciences</a>'),
-      '103266' => t('<a href="search/articles/general">General</a>'),
-      '103378' => t('<a href="search/articles/health-life-sciences">Health and Life Sciences</a>'),
-      '103270' => t('<a href="search/articles/physical-sciences-mathematics">Physical Sciences and Mathematics</a>'),
-      '103268' => t('<a href="search/articles/social-sciences">Social Sciences</a>'),
+      'class' => array(
+        'pane-description',
+      ),
     ),
   );
 
-  $form['articles']['articles_search'] = $search_button;
-  $form['articles']['articles_search']['#name'] = 'op_articles';
-
-// begin  code for description text  - ccthompson
-
-    $form['articles']['articles_container_mel'] = array(
-        '#type' => 'container',
-        '#states' => array(
-            'visible' => array(':input[name="articles[catalog]"]' => array('value' => 'articles-Mel')),
-        ),
-        '#attributes' => array(
-            'class' => array(
-                'pane-description',
-            ),
-        ),
-    );
-
-    $form['articles']['articles_container_mel']['description'] = array(
-        '#markup' => t('Articles in selected databases are searched. </br>For a more comprehensive listing, use <a href="http://guides.library.ucla.edu/databases-by-subject">Databases by Subject</a>.'),
-    );
-
-// end  code for description text  - ccthompson
+  $form['articlesplus']['articlesplus_container_mel']['description'] = array(
+    '#markup' => t('
+      <strong>What am I searching?</strong></br>
+      <a href="/#articlesplus">ArticlesPlus</a> searches many millions of scholarly articles,
+      newspaper articles, e-books, government documents, and more.  It combines hundreds of
+      online databases (like JSTOR and Web of Science) into a single search box.  See more
+      <a href="/about-articlesplus">about ArticlesPlus</a>.</br>
+      </br>
+      <a href="http://ucla.summon.serialssolutions.com/advanced">Advanced Search</a></br>
+      <a href="/search">Where else can I search?</a>
+    '),
+  );
 
   ////////////////////////////////////////////////////////////////////////////////
   // Databases tab.
@@ -226,10 +209,14 @@ can be changed via a pulldown search limit on the results screen. Many records c
   $form['databases'] = array(
     '#title' => t('Databases'),
   ) + $fieldset_default;
+  $databases_placeholder_label = 'Search for a database.';
   $form['databases']['text_query'] = $query_textfield;
   $form['databases']['text_query']['#attributes'] = array(
-    'placeholder' => t('Search for a database.'),
+    'placeholder' => t($databases_placeholder_label),
   );
+  $form['databases']['text_query']['#title'] = t($databases_placeholder_label);
+  $form['databases']['text_query']['#title_display'] = 'invisible';
+
   $form['databases']['sfx_search_index_container'] = array(
     '#type' => 'container',
     '#states' => array(
@@ -283,10 +270,13 @@ If you do not find the database you are seeking, try searching the <a href="http
   $form['journals'] = array(
     '#title' => t('Journals'),
   ) + $fieldset_default;
+  $journals_placeholder_label = 'Search journal titles.';
   $form['journals']['text_query'] = $query_textfield;
   $form['journals']['text_query']['#attributes'] = array(
-    'placeholder' => t('Search e-journal titles.'),
+    'placeholder' => t($journals_placeholder_label),
   );
+  $form['journals']['text_query']['#title'] = t($journals_placeholder_label);
+  $form['journals']['text_query']['#title_display'] = 'invisible';
   $form['journals']['catalog'] = array(
     '#type' => 'radios',
     '#options' => array(
@@ -356,10 +346,13 @@ The titles and abbreviations of journals subscribed to electronically by the UCL
   $form['guides'] = array(
     '#title' => t('Research Guides'),
   ) + $fieldset_default;
+  $guides_placeholder_label = 'Search by subject or course (e.g., "Psychology" or "Engineering 183")';
   $form['guides']['text_query'] = $query_textfield;
   $form['guides']['text_query']['#attributes'] = array(
-    'placeholder' => t('Search by subject or course (e.g., "Psychology" or "Engineering 183")'),
+    'placeholder' => t($guides_placeholder_label),
   );
+  $form['guides']['text_query']['#title'] = t($guides_placeholder_label);
+  $form['guides']['text_query']['#title_display'] = 'invisible';
 
   $form['guides']['guides_search'] = $search_button;
   $form['guides']['guides_search']['#name'] = 'op_guides';
@@ -403,10 +396,13 @@ The titles and abbreviations of journals subscribed to electronically by the UCL
   $form['oac'] = array(
     '#title' => t('Archives & Manuscripts'),
   ) + $fieldset_default;
+  $oac_placeholder_label = 'Search the OAC for a manuscript or archive.';
   $form['oac']['text_query'] = $query_textfield;
   $form['oac']['text_query']['#attributes'] = array(
-    'placeholder' => t('Search the OAC for a manuscript or archive'),
+    'placeholder' => t($oac_placeholder_label),
   );
+  $form['oac']['text_query']['#title'] = t($oac_placeholder_label);
+  $form['oac']['text_query']['#title_display'] = 'invisible';
   $form['oac']['oac_search'] = $search_button;
   $form['oac']['oac_search']['#name'] = 'op_oac';
 
@@ -430,6 +426,23 @@ The titles and abbreviations of journals subscribed to electronically by the UCL
 
 // end  code for description text  - ccthompson
 
+  // pass vertical tab id(s) to javascript for hash-landers
+  $ids = array();
+  foreach($form as $key => $element) {
+    if (substr($key, 0, 1) != '#') {
+      $ids[] = $key;
+    }
+  }
+  $form['tabs']['#attached']['js'] = array(
+    array(
+      'data' => array('ucla_tab_search' => array('ids' => $ids)),
+      'type' => 'setting'
+    ),
+    array(
+      'data' => drupal_get_path('module', 'ucla_tab_search') . '/ucla_tab_search.js'
+    )
+  );
+
   return $form;
 }
 
@@ -446,29 +459,61 @@ function ucla_tab_search_tabs_form_submit($form, &$form_state) {
   module_load_include('inc', 'ucla_search', 'includes/ucla_search_handlers');
   $search_date = $_SERVER['REQUEST_TIME'];
   $browser_ip = (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']);
-//  $search_form = 'ucla_tab';
 
+  // 2016-02-24 akohler: Not sure of the purpose of this array, other than to provide op_$tab names for the switch below...
   $tab_form_id_map = array(
     'books' => array('BM-CAT' => 'BM-CAT', 'BM-Mel' => 'BM-Mel'),
-    'articles' => array('ART' => 'ART', 'article' => 'article'),
+    // 2016-02-24 akohler: Added simplest possible array for ArticlesPlus tab
+    'articlesplus' => array('AP' => 'AP'),
     'journals' => array('J-ALL' => 'J-ALL', 'J-E' => 'J-E'),
     'databases' => array('within' => 'within', 'starts' => 'starts'),
     'guides' => array('within' => 'within', 'starts' => 'starts'),
     'oac' => array('within' => 'within', 'starts' => 'starts'),
   );
 
+  // Get current tab, according to the form.  However, this can be wrong
+  // if the tab was accessed via url#hash, instead of by clicking, so this
+  // value will be further checked against submitted form data.
+  $form_tab = $form_state['values']['tabs__active_tab'];
+
+  // Initialize other values used for tab checking.
+  $query_tab = "";
+  $query_tab_count = 0;
+  $tab_key = "";
+
+  // Iterate through tab form data to determine which set of inputs to use.
   foreach ($tab_form_id_map as $tab => $maps) {
-    // The submit button name is used to decide where we are.
-    if (empty($form_state['values']["op_$tab"])) {
+    // A submitted text_query field helps indicate which tab/form to use.
+    if (empty($form_state['values'][$tab]['text_query'])) {
       // Not this tab.
       continue;
     }
-    if (is_array($maps)) {
-	$search_form = $form_state['values']['tabs__active_tab'];
-	switch ($form_state['values']['tabs__active_tab']) {
-        case 'edit-books':
+    else {
+      // Save current array key for later use outside this loop
+      $tab_key = $tab;
+      $query_tab = "edit-$tab";
+      $query_tab_count++;
+      // If match, this is the correct tab, no need to check further.
+      if ($form_tab == $query_tab) {
+	$real_form_tab = $query_tab;
+        break;
+      }
+    }
+  }
+  // If, after going through all tab form data, we don't have a match but 
+  // do have query data, use the tab for the query data, not the alleged form tab.
+  if ($query_tab_count == 1 && $form_tab != $query_tab) {
+    $real_form_tab = $query_tab;
+    $tab_key = str_replace("edit-", "", $query_tab);
+  }
 
-        $form_state['values']['ucla_form_id'] = $maps[$form_state['values']['books']['catalog']];
+  $maps = $tab_form_id_map[$tab_key];
+
+  if (is_array($maps)) {
+    switch ($real_form_tab) {
+
+        case 'edit-books':
+          $form_state['values']['ucla_form_id'] = $maps[$form_state['values']['books']['catalog']];
 	    switch ( $maps[$form_state['values']['books']['catalog']] ) {
 	      case 'BM-Mel':
 		// Put form info into array expected by search logger / handlers
@@ -494,51 +539,15 @@ function ucla_tab_search_tabs_form_submit($form, &$form_state) {
 	    }
 	break;
 
-        case 'edit-articles':
-	  $search_categories_codes = '';
-	  foreach ($form_state['values']['articles']['search_categories'] as $search_categories_code) {
-	    if( $search_categories_code > 0 ){
-	      $search_categories_codes .= ' '.$search_categories_code;
-	      }
-	    }
-	    if( $form_state['values']['articles']['search_year'] > 0 ){
-	      $search_year = $form_state['values']['articles']['search_year'];
-	    } else {
-	      $search_year = 'date';
-	    }
-	  // Put form info into array expected by search logger / handlers
-	  $search_info = array (
-	  'search_target' => 'articles',
-	  'search_terms' => $form_state['values']['articles']['text_query'],
-	  'search_code' => $form_state['values']['articles']['search_index'],
-	  'search_year' => $search_year,
-	  'search_categories' => $search_categories_codes,
-	  'search_date' => $search_date,
-	  'browser_ip' => $browser_ip,
-	  'search_form' => 'ART',
-	  );
-	break;
-
         case 'edit-databases':
-	  $search_categories_codes = '';
-	  foreach ($form_state['values']['articles']['search_categories'] as $search_categories_code) {
-	    if( $search_categories_code > 0 ){
-	      $search_categories_codes .= ' '.$search_categories_code;
-	      }
-	    }
-	  if( $form_state['values']['articles']['search_year'] > 0 ){
-	    $search_year = $form_state['values']['articles']['search_year'];
-	  } else {
-	    $search_year = 'date';
-	  }
-      $search_info = array (
-	      'search_target' => 'database',
-	      'search_type' => 'contains',
-	      'search_terms' => $form_state['values']['databases']['text_query'],
-	      'search_date' => $search_date,
-	      'browser_ip' => $browser_ip,
-        'search_form' => 'DB',
-      );
+          $search_info = array (
+	    'search_target' => 'database',
+	    'search_type' => 'contains',
+	    'search_terms' => $form_state['values']['databases']['text_query'],
+	    'search_date' => $search_date,
+	    'browser_ip' => $browser_ip,
+            'search_form' => 'DB',
+          );
         break;
 
         case 'edit-journals':
@@ -593,6 +602,21 @@ function ucla_tab_search_tabs_form_submit($form, &$form_state) {
 	  );
 	break;
 
+        case 'edit-articlesplus':
+	  // Put form info into array expected by search logger / handlers
+	  $search_info = array (
+	  'search_target' => 'articlesplus',
+	  'search_terms' => $form_state['values']['articlesplus']['text_query'],
+	  'search_date' => $search_date,
+	  'browser_ip' => $browser_ip,
+	  'search_form' => 'AP',
+	  );
+	  // Add optional limit
+	  if ($form_state['values']['articlesplus']['peer_review'] == 1) {
+	    $search_info['search_limit'] = 'IsScholarly,true,f';
+	  }
+	break;
+
         default:
           // Not recognized.
 	  $search_info = array (
@@ -612,6 +636,17 @@ function ucla_tab_search_tabs_form_submit($form, &$form_state) {
     }
     else {
       $form_state['values']['ucla_form_id'] = $maps;
-    }
-  }
+    } // end of very long if(is_array($maps))
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ucla_tab_search_theme($existing, $type, $theme, $path) {
+  return array(
+    'articleplus_container_mel_description' => array(
+      'render element' => 'element',
+      'template' => 'articleplus_container_mel_description'
+    )
+  );
 }

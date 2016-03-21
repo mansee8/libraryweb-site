@@ -182,11 +182,11 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
   /**
    * Flag that denotes whether to use soft commits for Solr 4.x.
    *
-   * Defaults to FALSE.
+   * Defaults to TRUE.
    *
    * @var bool
    */
-  protected $soft_commit = FALSE;
+  protected $soft_commit = TRUE;
 
   /**
    * Implements SearchApiSolrConnectionInterface::__construct().
@@ -384,10 +384,15 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
    * Implements SearchApiSolrConnectionInterface::getSolrVersion().
    */
   public function getSolrVersion() {
+    // Allow for overrides by the user.
+    if (!empty($this->options['solr_version'])) {
+      return $this->options['solr_version'];
+    }
+
     $system_info = $this->getSystemInfo();
     // Get our solr version number
     if (isset($system_info->lucene->{'solr-spec-version'})) {
-      return $system_info->lucene->{'solr-spec-version'}[0];
+      return (int) $system_info->lucene->{'solr-spec-version'};
     }
     return 0;
   }
@@ -598,6 +603,7 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
 
     $result = drupal_http_request($url, $options);
 
+    $result->status_message = isset($result->status_message) ? $result->status_message : '';
     if (!isset($result->code) || $result->code < 0) {
       $result->code = 0;
       $result->status_message = 'Request failed';
@@ -630,7 +636,7 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
   public static function escape($value, $version = 0) {
     $replacements = array();
 
-    $specials = array('+', '-', '&&', '||', '!', '(', ')', '{', '}', '[', ']', '^', '"', '~', '*', '?', ':', "\\");
+    $specials = array('+', '-', '&&', '||', '!', '(', ')', '{', '}', '[', ']', '^', '"', '~', '*', '?', ':', "\\", 'AND', 'OR', 'NOT');
     // Solr 4.x introduces regular expressions, making the slash also a special
     // character.
     if ($version >= 4) {
@@ -715,7 +721,7 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
   /**
    * Implements SearchApiSolrConnectionInterface::update().
    */
-  public function update($rawPost, $timeout = FALSE) {
+  public function update($rawPost, $timeout = 3600) {
     if (empty($this->update_url)) {
       // Store the URL in an instance variable since many updates may be sent
       // via a single instance of this class.
@@ -856,7 +862,10 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
 
       // Recurse into children.
       if (is_array($value)) {
-        $params[] = $this->httpBuildQuery($value, $key);
+        $value = $this->httpBuildQuery($value, $key);
+        if ($value) {
+          $params[] = $value;
+        }
       }
       // If a query parameter value is NULL, only append its key.
       elseif (!isset($value)) {
@@ -882,10 +891,20 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
     $params += array(
       'json.nl' => self::NAMED_LIST_FORMAT,
     );
-    if ($query) {
+    if (isset($query)) {
       $params['q'] = $query;
     }
-    // PHP's built-in http_build_query() doesn't give us the format Solr wants.
+
+    // Carry out some performance improvements when no search keys are given.
+    if (!isset($params['q']) || !strlen($params['q'])) {
+      // Without search keys, the qf parameter is useless. We also remove empty
+      // search keys here. (With our normal service class, empty keys won't be
+      // set, but another module using this connection class might do that.)
+      unset($params['q'], $params['qf']);
+    }
+
+    // Build the HTTP query string. We have our own method for that since PHP's
+    // built-in http_build_query() doesn't give us the format Solr wants.
     $queryString = $this->httpBuildQuery($params);
 
     if ($method == 'GET' || $method == 'AUTO') {

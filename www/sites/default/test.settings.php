@@ -25,7 +25,7 @@ $conf['search_api_solr_overrides'] = array(
   'uclalib_solr_server' => array(
     'name' => t('Solr Server (UCLA Test)'),
     'options' => array(
-      'host' => 'temp-solrsearch.library.ucla.edu',
+      'host' => 't-w-solrlb01.library.ucla.edu',
       'port' => '80',
       'path' => '/solr/www-test',
     ),

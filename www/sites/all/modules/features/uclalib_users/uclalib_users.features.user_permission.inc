@@ -1308,6 +1308,7 @@ function uclalib_users_user_default_permissions() {
   $permissions['administer url aliases'] = array(
     'name' => 'administer url aliases',
     'roles' => array(
+      'Lead Site Editor' => 'Lead Site Editor',
       'admin_ga' => 'admin_ga',
       'administrator' => 'administrator',
     ),
@@ -1687,6 +1688,7 @@ function uclalib_users_user_default_permissions() {
   $permissions['create url aliases'] = array(
     'name' => 'create url aliases',
     'roles' => array(
+      'Lead Site Editor' => 'Lead Site Editor',
       'admin_ga' => 'admin_ga',
       'administrator' => 'administrator',
     ),
@@ -3406,15 +3408,6 @@ function uclalib_users_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'feeds',
-  );
-
-  // Exported permission: 'use PHP for settings'.
-  $permissions['use PHP for settings'] = array(
-    'name' => 'use PHP for settings',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'php',
   );
 
   // Exported permission: 'use PHP to import nodes'.

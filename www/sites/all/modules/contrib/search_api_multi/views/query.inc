@@ -34,7 +34,7 @@ class SearchApiMultiViewsQuery extends SearchApiViewsQuery {
       $row = array();
 
       if (!empty($this->options['entity_access']) && isset($indexes[$result['index_id']]) && $indexes[$result['index_id']]->getEntityType()) {
-        $entity = $indexes[$result['index_id']]->loadItems(array());
+        $entity = $indexes[$result['index_id']]->loadItems(array($result['id']));
         if (!$entity || !entity_access('view', $indexes[$result['index_id']]->item_type, reset($entity))) {
           continue;
         }
@@ -46,6 +46,14 @@ class SearchApiMultiViewsQuery extends SearchApiViewsQuery {
       }
       else {
         $row['entity'] = $result['id'];
+      }
+
+      // Gather any fields from the search results.
+      if (!empty($result['fields'])) {
+        foreach ($result['fields'] as $field_id => $value) {
+          $field_id = $result['index_id'] . ':' . $field_id;
+          $row['_entity_properties'][$field_id] = $value;
+        }
       }
 
       $row['_entity_properties']['search_api_multi_id'] = $result['id'];

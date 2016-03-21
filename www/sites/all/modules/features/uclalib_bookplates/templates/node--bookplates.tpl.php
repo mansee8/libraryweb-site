@@ -78,8 +78,36 @@
  * @see template_process()
  */
 ?>
-<article<?php print $attributes; ?>>
-    <?php if (!empty($title_prefix) || !empty($title_suffix) || !$page): ?>
+<?php if ($teaser): ?>
+    <!-- teaser template HTML here -->
+    <div<?php print $content_attributes; ?>>
+        <h3><a href="<?php print $node_url ?>" title="<?php print $title
+            ?>"><?php print $title ?></a></h3>
+        <?php
+        hide($content['field_donor_name_bookplates']); ?>
+        <div class="donors-name">
+            Made possible by a gift from
+            <?php print render ($content['field_donor_name_bookplates']); ?>
+        </div>
+        <?php
+        hide($content['field_bookplate_image']); ?>
+        <div class="bookplate-image">
+            <?php print render ($content['field_bookplate_image']); ?>
+        </div>
+
+        <?php
+        hide($content['field_bookplate_description']); ?>
+        <div class="bookplate-copy">
+            <?php print render ($content['field_bookplate_description']); ?>
+        </div>
+
+    </div>
+
+<?php else: ?>
+    <!-- regular node view template HTML here -->
+
+
+        <?php if (!empty($title_prefix) || !empty($title_suffix) || !$page): ?>
         <header>
             <?php print render($title_prefix); ?>
             <?php if (!$page): ?>
@@ -87,29 +115,7 @@
             <?php endif; ?>
             <?php print render($title_suffix); ?>
         </header>
+     </div>
     <?php endif; ?>
-    <div<?php print $content_attributes; ?>>
-<?php //dpm($variables); ?>
-
-    <?php
-
-    hide($content['field_bookplates_spak_code']);
-    print render ($content);
-    ?>
-    <div class="spak-code">
-       <a href="http://catalog.library.ucla.edu/vwebv/search?searchArg1=<?php
-       print render
-    ($content['field_bookplates_spak_code'][0]); ?>&argType1=all&searchCode1=SPAK&combine2=and&searchArg2=&argType2=all&searchCode2=SPAK&combine3=and&searchArg3=&argType3=all&searchCode3=GKEY&year=2014-2015&fromYear=&toYear=&location=all&place=all&type=all&status=all&medium=all&language=all&content=all&media=all&carrier=all&recCount=50&searchType=2&page.search.search.button=Search">See all results in
-        catalog</a>
-    </div>
-
-    <?php if ($display_submitted): ?>
-        <footer class="node__submitted">
-            <?php print $user_picture; ?>
-            <p class="submitted"><?php print $submitted; ?></p>
-        </footer>
-    <?php endif; ?>
-    </div>
-
-    <?php print render($content['comments']); ?>
-</article>
+    </article>
+<?php endif; ?>

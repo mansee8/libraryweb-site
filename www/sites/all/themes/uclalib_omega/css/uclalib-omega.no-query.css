@@ -925,6 +925,10 @@ a[href="#main-content"] {
   margin-top: 2em;
 }
 
+.ap_graphic {
+  width: 38%;
+}
+
 /**
  * Override jQuery UI widget default font sizes.
  */
@@ -1419,6 +1423,37 @@ a.more-link,
   color: #2d2f35;
 }
 
+.give_now_sprites {
+  width: 120px;
+  height: 56px;
+  background: url(../images/sprites.png) no-repeat 0 1px;
+  overflow: hidden;
+  float: right;
+  transform: scale(1.04);
+  margin-right: -90px;
+  padding: 9px 22px;
+}
+.give_now_sprites:hover {
+  background-position: 0 -56px;
+}
+
+.pane-give-now-button p {
+  text-shadow: 0 0.04em 0.02em #8d6e2d;
+  font-size: 16px;
+  text-align: center;
+  margin-top: -16px;
+  text-transform: uppercase;
+}
+
+.pane-give-now-button p a:hover {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 1150px) {
+  .give_now_sprites {
+    margin-right: 0;
+  }
+}
 .pane-horizontal-rule {
   border-bottom: 1px solid #adcde5;
   margin-bottom: 35px;
@@ -2094,7 +2129,8 @@ a.next-week:after {
   border: none;
   margin: 4px 0;
   padding-right: 7px;
-  text-align: center;
+  text-align: left;
+  text-indent: 7px;
 }
 .pane-ucla-tab-search-ucla-tab-search-tabs .vertical-tabs .vertical-tabs-list li a {
   background-color: #eff3f4;

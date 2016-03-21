@@ -136,11 +136,8 @@ function uclalib_bookplates_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Donor(s)',
-    'weight' => '1',
-    'children' => array(
-      0 => 'field_donor_first_name_bookplate',
-      1 => 'field_donor_last_name_bookplate',
-    ),
+    'weight' => '2',
+    'children' => array(),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'formatter' => '',
@@ -167,10 +164,7 @@ function uclalib_bookplates_field_group_info() {
   $field_group->data = array(
     'label' => 'Donors',
     'weight' => '1',
-    'children' => array(
-      0 => 'field_donor_first_name_bookplate',
-      1 => 'field_donor_last_name_bookplate',
-    ),
+    'children' => array(),
     'format_type' => 'html-element',
     'format_settings' => array(
       'formatter' => '',

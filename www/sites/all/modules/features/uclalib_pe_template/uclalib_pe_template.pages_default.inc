@@ -261,6 +261,34 @@ function uclalib_pe_template_default_page_manager_handlers() {
     $display->content['new-4a1d85b4-084b-45a5-b32e-785f8d118d46'] = $pane;
     $display->panels['header'][2] = 'new-4a1d85b4-084b-45a5-b32e-785f8d118d46';
     $pane = new stdClass();
+    $pane->pid = 'new-5396ef1e-5f47-46cf-a786-72d4ffad7281';
+    $pane->panel = 'header';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Give Now Button [PLACEHOLDER]',
+      'title' => '',
+      'body' => '<p><a class="give_now_sprites" href="https://giving.ucla.edu/Standard/NetDonate.aspx?SiteNum=463">Give Now</a></p>',
+      'format' => 'full_html',
+      'substitute' => 0,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'pane-give-now-button',
+    );
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '5396ef1e-5f47-46cf-a786-72d4ffad7281';
+    $display->content['new-5396ef1e-5f47-46cf-a786-72d4ffad7281'] = $pane;
+    $display->panels['header'][3] = 'new-5396ef1e-5f47-46cf-a786-72d4ffad7281';
+    $pane = new stdClass();
     $pane->pid = 'new-2ce2b75f-31cd-4af2-ad7d-7e4538bd5447';
     $pane->panel = 'help';
     $pane->type = 'page_messages';

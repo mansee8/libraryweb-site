@@ -121,9 +121,9 @@ $handler->display->display_options['filters']['search_target']['group_info']['la
 $handler->display->display_options['filters']['search_target']['group_info']['identifier'] = 'search_target';
 $handler->display->display_options['filters']['search_target']['group_info']['group_items'] = array(
   1 => array(
-    'title' => 'Articles',
+    'title' => 'ArticlesPlus',
     'operator' => '=',
-    'value' => 'articles',
+    'value' => 'articlesplus',
   ),
   2 => array(
     'title' => 'Catalog',
@@ -159,6 +159,11 @@ $handler->display->display_options['filters']['search_target']['group_info']['gr
     'title' => 'Site',
     'operator' => '=',
     'value' => 'site',
+  ),
+  9 => array(
+    'title' => 'Articles (OLD)',
+    'operator' => '=',
+    'value' => 'articles',
   ),
 );
 

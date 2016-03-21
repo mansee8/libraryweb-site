@@ -1,0 +1,28 @@
+.give_now_sprites {
+  width: 120px;
+  height: 56px;
+  background: url(../images/sprites.png) no-repeat 0 1px;
+  overflow: hidden;
+  float: right;
+  transform: scale(1.04);
+  margin-right: -90px;
+  padding: 9px 22px;
+  &:hover {
+    background-position: 0 -56px;
+  }
+}
+.pane-give-now-button p {
+  text-shadow: 0 0.04em 0.02em #8d6e2d;
+  font-size: 16px;
+  text-align: center;
+  margin-top: -16px;
+  text-transform: uppercase;
+}
+.pane-give-now-button p a:hover {
+    text-decoration: none;
+}
+@media only screen and (max-width: 1150px) {
+  .give_now_sprites {
+    margin-right: 0;
+  }
+}

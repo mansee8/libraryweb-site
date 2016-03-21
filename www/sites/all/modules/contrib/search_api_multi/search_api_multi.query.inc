@@ -186,6 +186,12 @@ interface SearchApiMultiQueryInterface {
    *     - id: The item's ID.
    *     - index_id: The machine name of the index this item was found on.
    *     - score: A float measuring how well the item fits the search.
+   *     - fields: (optional) If set, an array containing some field values
+   *       already ready-to-use, keyed by their field identifiers (without index
+   *       prefix). This allows search engines (or postprocessors) to store
+   *       extracted fields so other modules don't have to extract them again.
+   *       This fields should always be checked by modules that want to use
+   *       field contents of the result items.
    *     - entity (optional): If set, the fully loaded result item. This field
    *       should always be used by modules using search results, to avoid
    *       duplicate item loads.

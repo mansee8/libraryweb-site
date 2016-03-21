@@ -16,23 +16,9 @@
 }
 td.grid-3 {
     vertical-align: top;
+    padding-top:20px;
 }
-.field--name-field-bookplate-author-first-nam.field--type-text.field--label-hidden, .field--name-field-donor-first-name.field--type-text.field--label-hidden {
-    display: inline;
-    float: left;
-    clear: left;
-}
-.field--name-field-donor-last-name.field--type-text.field--label-hidden, .field--name-field-bookplate-author-last-name.field--type-text.field--label-hidden {
-    margin-bottom: 5px;
-}
-.field--name-field-bookplate-author-last-name.field--type-text.field--label-hidden, .field--name-field-donor-last-name.field--type-text.field--label-hidden {
-    float: left;
-    margin-bottom: 5px;
-    padding-left: 5px;
-}
-.field--name-field-donor-s-.field--type-bookplates-donor-s-.field--label-above {
-    clear: left;
-}
+
 table.views-view-grid tbody tr td.grid-3 article.node.node--bookplates.node--bookplates-landing-page.node--bookplates--bookplates-landing-page {
     text-align: left;
 }
@@ -40,14 +26,6 @@ table.views-view-grid tbody tr td.grid-3 article.node.node--bookplates.node--boo
     clear: left;
     margin: 0 10px 0 0;
     padding: 0 10px 0 0;
-}
-#node_bookplates_full_group_author {
-    clear: left;
-    line-height: 1;
-    font-size: 13px;
-    border: 0 solid #c0c0c0;
-    margin: 0 2px;
-    padding: 10px 0;
 }
 .node--bookplates--full .node__content .field__items .field__item.even img{
     clear: left;
@@ -75,14 +53,10 @@ table.views-view-grid tbody tr td.grid-3 article.node.node--bookplates.node--boo
 .spak-code {
     clear: left;
     font-weight: 700;
+    margin-top:10px;
 }
 .node--bookplates--bookplates-landing-page .node__content .spak-code a {
     display: none;
-}
-#node_bookplates_bookplates_landing_page_group_author.form-wrapper {
-    border: 0 solid #c0c0c0;
-    margin: 0 2px;
-    padding: 10px 0;
 }
 .views-widget .form-item.form-type-select.form-item-field-bookplates-subject-area-tid {
     text-indent: -20px;
@@ -98,9 +72,177 @@ table.views-view-grid tbody tr td.grid-3 article.node.node--bookplates.node--boo
     font-style: italic;
     text-indent: -40px;
 }
-tbody tr td.grid-3 {
+.page-bookplates.section-bookplates tbody tr td.grid-3 {
     text-align: left;
 }
 article.node.node--bookplates.node-teaser.node--teaser.node--bookplates--teaser .node__content .spak-code a {
     display: none;
+}
+.page-bookplates.section-bookplates .views-exposed-widget.views-submit-button {
+    clear: both;
+}
+.page-bookplates.section-bookplates .field-content ul {
+    margin-top: 0;
+}
+span.views-label.views-label-field-donor-name-bookplates {
+    font-weight: 600;
+}
+.page-bookplates.section-bookplates .views-field.views-field-title {
+    font-weight: 600;
+    padding-bottom: 7px;
+}
+.field.field--name-field-bookplates-subject-area.field--type-taxonomy-term-reference.field--label-above.clearfix ul li {
+    list-style-type: none;
+    display: block;
+}
+.field--name-field-bookplates-subject-area.field--type-taxonomy-term-reference.field--label-above.clearfix ul.links {
+    margin: 0 !important;
+    padding:0;
+}
+.field.field--name-field-bookplates-subject-area.field--type-taxonomy-term-reference.field--label-above {
+    font-weight: 600;
+    padding-top: 6px;
+}
+.field.field--name-field-bookplate-image.field--type-image.field--label-hidden .field__items .field__item.even img {
+    float: left;
+    padding: 0 20px 20px 0;
+}
+.pane-content article.node.node--bookplates.node--full.node--bookplates--full {
+    padding-bottom: 20px;
+    font-style: italic;
+}
+.node--bookplates.node--full.node--bookplates--full .donors-name:last-child:after {
+    content: ".";
+    margin-left:-3px;
+}
+.page-bookplates.section-bookplates .donors-name {
+    font-style: italic;
+    padding-bottom: 10px;
+}
+.donors-name:after {
+    content: ".";
+    margin-left:-3px;
+}
+.page-bookplates.section-bookplates .view-content header h2.node__title {
+    margin-top: 0;
+}
+.section-collection-endowment-initiative .l-page.has-no-sidebars .l-main-wrapper .l-main .l-content .panel-pane.pane-page-content .pane-content .node__content {
+    clear: left;
+}
+.section-collection-endowment-initiative .l-page.has-no-sidebars .l-main-wrapper .l-main .l-content .panel-pane.pane-page-content .pane-content .node__content .donors-name {
+    margin-bottom: 19px;
+    font-style: italic;
+}
+.page-bookplates.section-bookplates .panel-pane.pane-custom.pane-1 {
+    padding: 0;
+    margin-top: -5px;
+}
+.page-bookplates.section-bookplates table.views-view-grid {
+    margin-top: -10px;
+}
+.page-bookplates.section-bookplates .l-main {
+    padding-top: 1px;
+}
+.views-field.views-field-field-donor-name-bookplates div.views-field.views-field-field-bookplate-image div.field-content img {
+    float: left;
+    padding: 10px 10px 0 0;
+}
+.views-field.views-field-field-bookplates-subject-area {
+    font-weight: 600;
+}
+.page-bookplates.section-bookplates .view-content .views-row {
+    float: left;
+    clear: left;
+}
+.page-bookplates.section-bookplates .view-content {
+    margin: 0 0 0 10px;
+}
+.page-bookplates.section-bookplates hr {
+     margin: 0 0 -50px;
+ }
+.node-type-bookplates.section-content .views-field.views-field-field-bookplate-image .field-content img {
+    float: left;
+    padding: 8px 20px 0 0;
+}
+span.views-field.views-field-field-bookplates-spak-code span.field-content a {
+    line-height: 1;
+    font-style: italic;
+}
+.views-field.views-field-field-bookplates-subject-area-1 .field-content ul li {
+    list-style-type: none;
+    font-weight: 600;
+}
+.views-field.views-field-field-bookplates-subject-area-1 .field-content ul {
+    padding:0;
+    margin: 0;
+    clear: both;
+}
+span.views-label.views-label-field-bookplates-subject-area-1 {
+    font-weight: 600;
+    clear: both;
+    float: left;
+}
+span.views-field.views-field-field-url-after-spak-code, span.views-field.views-field-field-url-before-spak-code {
+    display: none;
+}
+.page-bookplates.section-bookplates .view-header p {
+    display: none;
+}
+/*tables on taxonomy results page*/
+.section-collection-endowment-initiative .view-content table.views-view-grid tbody {
+    vertical-align: top;
+}
+.section-bookplates span.field-content.read-more a {
+    font-size: 11px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+}
+.section-bookplates .views-field-title span.field-content a {
+    font-size: 15px;
+}
+.page-bookplates.section-bookplates table th + th, table td + td {
+     text-align: left !important;
+}
+.view.view-bookplates-landing-page .view-header p {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 9px;
+    margin: 0;
+    padding-bottom: 10px;
+}
+.view-bookplates-landing-page a.views-more-link:after {
+    content: "\a";
+    white-space: pre;
+    display: block;
+}
+.view-bookplates-landing-page a.views-more-link {
+    display: block;
+    padding-top: 10px;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 13px;
+    padding-bottom: 20px;
+}
+.section-bookplates .panel-pane.pane-custom.pane-1 .pane-content {
+    margin-left:18px;
+}
+.view.view-bookplates-landing-page.view-id-bookplates_landing_page .views-field.views-field-title .field-content {    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+span.views-field.views-field-field-donor-name-bookplates.bookplates-donor-gift {
+    font-style: italic;
+}
+span.views-field.views-field-field-donor-name-bookplates.bookplates-donor-gift:after {
+    content: ".";
+    margin-left:-3px;
+}
+.views-field.views-field-field-bookplate-image .field-content a img {
+    padding-top: 8px;
+}
+.views-field.views-field-field-bookplate-description .field-content {
+    padding-top: 4px;
 }
