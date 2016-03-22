@@ -10,3 +10,6 @@ Feature: Testing Article Plus tab
 	And I click the "#edit-articlesplus-articlesplus-search" button
 	And wait 3 second
 	Then I should see "books"
+	Then I press the "back" button in the browser
+	Then I should see "ArticlesPlus"
+	
