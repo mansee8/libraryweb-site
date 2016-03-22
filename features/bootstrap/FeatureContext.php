@@ -37,10 +37,27 @@ class FeatureContext extends MinkContext
 	$this->getSession()->wait(1000*$arg1);
      //throw new PendingException();
  }
-
  
-
+ 
+  /**
+  * @Then /^I press the "([^"]*)" button in the browser$/
+  */
+ public function iPressTheButtonInTheBrowser($arg1)
+ {
+    $session = $this->getSession();
+	if ($arg1 == 'back') {
+            $session->back();
+        } else if ($arg1 == 'forward') {
+            $session->forward();
+        } else if ($arg1 == 'reload') {
+            $session->reload();
+        } else {
+            throw new ExpectationException('Unknown browser button.', $session);
+        }
 	
+	
+ }
+
 	 /**
   * @Given /^I click the "([^"]*)" button$/
   */
@@ -90,15 +107,4 @@ public function iSelectTheRadioButton($labelText)
 }
 	
 
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
 }
